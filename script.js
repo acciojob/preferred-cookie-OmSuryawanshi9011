@@ -36,6 +36,7 @@ function getCookie(name) {
   return null;
 }
 
+
 function applyStyles(fontSize, fontColor) {
   document.body.style.fontSize = fontSize + 'px';
   document.body.style.color = fontColor;
