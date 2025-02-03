@@ -7,23 +7,38 @@ document.querySelector('form').addEventListener('submit', function(event) {
   var fontColor = document.querySelector('#fontcolor').value;
 
   // Save these values in cookies
-  // You'll need to implement the `setCookie` function
   setCookie('fontSize', fontSize);
   setCookie('fontColor', fontColor);
 
   // Apply the font size and color to the page
-  // You'll need to implement the `applyStyles` function
   applyStyles(fontSize, fontColor);
 });
+
 function setCookie(name, value) {
   var date = new Date();
   date.setFullYear(date.getFullYear() + 1); // Cookie expires after one year
   document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
 }
+
+function getCookie(name) {
+  var cookieArr = document.cookie.split(";");
+  
+  for(var i = 0; i < cookieArr.length; i++) {
+    var cookiePair = cookieArr[i].split("=");
+    
+    if (name == cookiePair[0].trim()) {
+      return decodeURIComponent(cookiePair[1]);
+    }
+  }
+  
+  return null;
+}
+
 function applyStyles(fontSize, fontColor) {
   document.body.style.fontSize = fontSize + 'px';
   document.body.style.color = fontColor;
 }
+
 window.onload = function() {
   if (document.cookie.split(';').some((item) => item.trim().startsWith('fontSize='))) {
     var fontSize = getCookie('fontSize');
@@ -36,4 +51,4 @@ window.onload = function() {
   if (fontSize && fontColor) {
     applyStyles(fontSize, fontColor);
   }
-};}
+};
