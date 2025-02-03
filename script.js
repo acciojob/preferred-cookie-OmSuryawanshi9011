@@ -18,6 +18,8 @@ function setCookie(name, value) {
   var date = new Date();
   date.setFullYear(date.getFullYear() + 1); // Cookie expires after one year
   document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+	console.log(document.cookie);  // Add this line
+
 }
 
 function getCookie(name) {
@@ -42,10 +44,12 @@ function applyStyles(fontSize, fontColor) {
 window.onload = function() {
   if (document.cookie.split(';').some((item) => item.trim().startsWith('fontSize='))) {
     var fontSize = getCookie('fontSize');
+	  console.log('fontSize', fontSize);  // Add this line
   }
   
   if (document.cookie.split(';').some((item) => item.trim().startsWith('fontColor='))) {
     var fontColor = getCookie('fontColor');
+	  console.log('fontColor', fontColor);  // Add this line
   }
 
   if (fontSize && fontColor) {
