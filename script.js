@@ -25,24 +25,15 @@ function applyStyles(fontSize, fontColor) {
   document.body.style.color = fontColor;
 }
 window.onload = function() {
-  var fontSize = getCookie('fontSize');
-  var fontColor = getCookie('fontColor');
+  if (document.cookie.split(';').some((item) => item.trim().startsWith('fontSize='))) {
+    var fontSize = getCookie('fontSize');
+  }
   
+  if (document.cookie.split(';').some((item) => item.trim().startsWith('fontColor='))) {
+    var fontColor = getCookie('fontColor');
+  }
+
   if (fontSize && fontColor) {
     applyStyles(fontSize, fontColor);
   }
-};
-
-function getCookie(name) {
-  var cookieArr = document.cookie.split(";");
-  
-  for(var i = 0; i < cookieArr.length; i++) {
-    var cookiePair = cookieArr[i].split("=");
-    
-    if (name == cookiePair[0].trim()) {
-      return decodeURIComponent(cookiePair[1]);
-    }
-  }
-  
-  return null;
-}
+};}
